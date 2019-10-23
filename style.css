@@ -1,0 +1,50 @@
+body {
+    max-width: 400px;
+    margin: 30px auto;
+    font-family: system-ui;
+    font-size: 18px;
+}
+h1 {
+    text-align: center;
+}
+input[type="text"] {
+    font-size: 16px;
+    padding: 13px 17px;
+    border: 1px solid #ddd;
+    background-color: #f6f6f6;
+    width: 100%;
+}
+
+input[type="text"]:focus, button:focus {
+    outline: none;
+}
+#items, li {
+    width: 100%;
+}
+#items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#items li {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button {
+    display: block;
+    background-color: cornflowerblue;
+    padding: 10px 16px;
+    border-radius: 3px;
+    margin: 5px;
+    border: 0;
+    font-size: 16px;
+    color: #fff;
+}
+.clearfix {
+    clear: both;
+}
