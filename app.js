@@ -5,6 +5,7 @@ $(document).ready(function() {
     const $username = $('#username');
     const $addBtn = $('#add');
     const $items = $('#items');
+    const $saveBtn = $('#save');
 
     function addItem(itemContent) {
         const $li = $('<li><span>' + itemContent + '</span><button>X</button></li>')
@@ -13,6 +14,7 @@ $(document).ready(function() {
     }
 
     $getBtn.on('click', function() {
+        $('#items').empty();
         const usernameValue = $username.val();
         $.getJSON(`/todos/${usernameValue}`, function(data, status) {
             // data
@@ -38,5 +40,29 @@ $(document).ready(function() {
         const $button = $(event.target);
         const $li = $button.parent();
         $li.remove();
+    });
+
+    $saveBtn.on('click', function(e) {
+        const username = $username.val();
+        let items = $('#items > li > span')
+        let todoArr = []
+        for (let i = 0;i < items.length;i++) {
+            let $item = $(items[i]);
+            todoArr.push($item.text());
+        }
+        console.log(todoArr);
+        $.ajax({
+            url: `/todos/${username}/save`,
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                if(data.success)
+                    alert('Saved');
+                else
+                    alert('Error saving');
+            },
+            data: JSON.stringify({ array: todoArr})
+        });
     });
 })

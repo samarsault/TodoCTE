@@ -11,8 +11,18 @@ const DB = {
             }
         });
     },
-    save: function(username) {
-
+    save: function(username, todoArr, callBack) {
+        fs.readFile('./data.json', 'utf-8', function(err, dataStr) {
+            let data = JSON.parse(dataStr);
+            data[username] = todoArr;
+            let str = JSON.stringify(data)
+            fs.writeFile('./data.json', str, function(err) {
+                if (!err)
+                    callBack(false);
+                else
+                    callBack(true);
+            })
+        })
     }
 }
 
